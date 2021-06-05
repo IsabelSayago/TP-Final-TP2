@@ -1,14 +1,17 @@
 var express = require('express');
 var router = express.Router();
 const data = require('../data/user');
+const auth = require('../middleware/auth');
 
-router.get('/',(req,res)=>{
-	res.send('respond with a resource')
+
+router.get('/',async(req,res)=>{
+	const allUsers = await data.getAllUsers();
+	res.send(allUsers)
 });
 
 router.post('/',async (req,res)=>{
 	const result = await data.addUser(req.body);
-	res.JSON(result);
+	res.send(result);
 });
 
 router.post('/login', async(req,res)=>{

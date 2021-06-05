@@ -2,15 +2,24 @@ const mongodb = require('mongodb');
 const connection = require ('./connection');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const { all } = require('../app');
+
+async function getAllUsers() {
+	const connectionDB = await connection.getConnection();
+	const database = await connectionDB.db('TPFinal-TP2');
+	const users = await database.collection('Usuarios');
+	const allUsers = await users.find().toArray();
+	return allUsers;
+}
 
 async function addUser(user){
-	const connectiondb = await connection.getConnection();
+	const connectionDB = await connection.getConnection();
 	
 	//primer parámetro lo que se encripta
 	//segunda parámetro (salt), número de iteraciones para hacer la encripción
 	user.password = bcrypt.hashSync(user.password,8);
 
-	const result = await connectiondb.db('TPFinal-TP2')
+	const result = await connectionDB.db('TPFinal-TP2')
 		.collection('Usuarios')
 		.insertOne(user);
 	
@@ -19,11 +28,11 @@ async function addUser(user){
 
 async function findByCredentials(email,password){
 	const connectiondb = await connection.getConnection();
-	const user = await connectiondb.db('TPFinal-TP2')
+	const user = await connection.db('TPFinal-TP2')
 		.collection('Usuarios')
 		.findOne({email:email});
 	if(!user){
-		throw new Error('Usuario inexistente');
+		throw new Error('Contraseña inválida');
 	}
 
 	const isMatch = bcrypt.compareSync(password, user.password);
@@ -44,4 +53,4 @@ async function generateJWT(user){
 }
 
 
-module.exports = {addUser, findByCredentials, generateJWT};
+module.exports = {getAllUsers, addUser, findByCredentials, generateJWT};

@@ -1,6 +1,5 @@
 const MongoClient = require('mongodb').MongoClient;
-const uri = 'mongodb+srv://admin:1234db@cluster0.2ga9n.mongodb.net/TPFinal-TP2?retryWrites=true&w=majority';
-
+const uri = 'mongodb+srv://admin:1234db@cluster0.fppnc.mongodb.net/TPFinal-TP2?retryWrites=true&w=majority';
 const client = new MongoClient(uri);
 
 let instance = null;
