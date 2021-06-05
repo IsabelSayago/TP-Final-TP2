@@ -11,7 +11,7 @@ async function addUser(user){
 	user.password = bcrypt.hashSync(user.password,8);
 
 	const result = await connectiondb.db('TPFinal-TP2')
-		.collection('Users')
+		.collection('Usuarios')
 		.insertOne(user);
 	
 	return result;
@@ -20,7 +20,7 @@ async function addUser(user){
 async function findByCredentials(email,password){
 	const connectiondb = await connection.getConnection();
 	const user = await connectiondb.db('TPFinal-TP2')
-		.collection('Users')
+		.collection('Usuarios')
 		.findOne({email:email});
 	if(!user){
 		throw new Error('Usuario inexistente');
