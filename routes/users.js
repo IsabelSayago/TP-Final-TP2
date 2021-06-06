@@ -9,7 +9,7 @@ router.get('/',auth, async(req,res)=>{
 	res.send(allUsers)
 });
 
-router.post('/',auth, async (req,res)=>{
+router.post('/', async (req,res)=>{
 	const result = await data.addUser(req.body);
 	res.send(result);
 });
