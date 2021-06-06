@@ -4,7 +4,7 @@ const data = require('../data/user');
 const auth = require('../middleware/auth');
 
 
-router.get('/',auth, async(req,res)=>{
+router.get('/', async(req,res)=>{
 	const allUsers = await data.getAllUsers();
 	res.send(allUsers)
 });
