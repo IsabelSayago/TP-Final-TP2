@@ -5,12 +5,12 @@
     
 -Listado Funcionalidades
     -Login y sign up de usuarios
-    -Autenticar usuario
+    -Autenticación usuario
     -Operaciones CRUD usuario  
-    -Authorizar 
+    -Autorización usuario
     -Interaccion con base de datos Mongo
     -Listar amigos 
-    -Persistencia del usuario a traves de la API de Google
+    -Persistencia del usuario a través de la API de Google
 
 
 -Listado de actores/roles
