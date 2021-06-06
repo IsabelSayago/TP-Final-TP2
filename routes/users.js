@@ -2,13 +2,30 @@ var express = require('express');
 var router = express.Router();
 const data = require('../data/user');
 
-router.get('/',(req,res)=>{
-	res.send('respond with a resource')
+router.get('/', async (req,res)=>{
+
+	const result = await data.getAllUsers();
+	res.send(result);
+});
+
+router.get('/:id', async (req, res)=>{
+
+    const user = await data.getUser(req.params.id);
+    res.send(user);
 });
 
 router.post('/',async (req,res)=>{
 	const result = await data.addUser(req.body);
-	res.JSON(result);
+	res.send(result);
+});
+
+router.put('/:id', async (req, res)=>{
+    // TODO: Validacion
+    let id = req.params.id;
+    let user = req.body;
+    user._id = id;
+    user = await data.updateUser(req.body);
+    res.send(user);
 });
 
 router.post('/login', async(req,res)=>{
