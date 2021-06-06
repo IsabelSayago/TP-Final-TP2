@@ -4,12 +4,12 @@ const data = require('../data/user');
 const auth = require('../middleware/auth');
 
 
-router.get('/',async(req,res)=>{
+router.get('/',auth, async(req,res)=>{
 	const allUsers = await data.getAllUsers();
 	res.send(allUsers)
 });
 
-router.post('/',async (req,res)=>{
+router.post('/',auth, async (req,res)=>{
 	const result = await data.addUser(req.body);
 	res.send(result);
 });

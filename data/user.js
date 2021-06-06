@@ -1,3 +1,4 @@
+require('dotenv').config();
 const mongodb = require('mongodb');
 const connection = require ('./connection');
 const bcrypt = require('bcryptjs');
@@ -27,8 +28,8 @@ async function addUser(user){
 }
 
 async function findByCredentials(email,password){
-	const connectiondb = await connection.getConnection();
-	const user = await connection.db('TPFinal-TP2')
+	const connectionDB = await connection.getConnection();
+	const user = await connectionDB.db('TPFinal-TP2')
 		.collection('Usuarios')
 		.findOne({email:email});
 	if(!user){
@@ -48,7 +49,7 @@ async function findByCredentials(email,password){
 
 async function generateJWT(user){
 // tercer parámetro es un key de la aplicación
-	const token = jwt.sign({_id: user._id, email:user.email}, 'secret123', {expiresIn: '1h'})
+	const token = jwt.sign({_id: user._id, email:user.email}, process.env.SECRET_KEY, {expiresIn: '5min'})
 	return token;
 }
 
