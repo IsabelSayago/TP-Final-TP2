@@ -26,11 +26,11 @@ El objetivo principal será conectar dos usuarios para chatear en tiempo real en
     - Amigos
     
 ## *Instrucciones técnicas:*
-Para la instalación de un entorno de desarrollo:
+**Para la instalación de un entorno de desarrollo:**
 
-    - Editor de texto - Recomendado: Visual Studio Code
-    - Node js -versión 14.15.3
-    - En la consola ejecutar:
+1. Editor de texto - Recomendado: Visual Studio Code
+2. Node js -versión 14.15.3
+3. En la consola ejecutar:
 ```bash
     npm install express-generator -g
 ```
@@ -40,7 +40,8 @@ Para la instalación de un entorno de desarrollo:
 ```
 
     
-    - Chequear tener los siguientes paquetes. Primero ejecutar:
+4. Chequear tener los siguientes paquetes. Primero ejecutar:
+
 ```bash
     npm install 
 ```
@@ -67,13 +68,13 @@ Para la instalación de un entorno de desarrollo:
 
 - "morgan": "~1.9.1" → Middleware del registrador de solicitudes HTTP para node.js
 
-Para la ejecución:
+**Para la ejecución:**
 
-    - Configurar Cluster en MongoDB ->
+1. Configurar Cluster en MongoDB ->
 
-        > Conectarse a él usando la opción 2 (MongoDB's native drivers) versión 2.2.12 or later
+> Conectarse a él usando la opción 2 (MongoDB's native drivers) versión 2.2.12 or later
 
-    - Para levantar el servidor:
+2. Para levantar el servidor:
 
 ```bash
     npm start
