@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const data = require('../data/user');
+const auth = require('../middleware/auth');
 
 router.get('/', async (req,res)=>{
 
@@ -14,7 +15,7 @@ router.get('/:id', async (req, res)=>{
     res.send(user);
 });
 
-router.post('/',async (req,res)=>{
+router.post('/', async (req,res)=>{
 	const result = await data.addUser(req.body);
 	res.send(result);
 });
@@ -26,6 +27,7 @@ router.put('/:id', async (req, res)=>{
     user._id = id;
     user = await data.updateUser(req.body);
     res.send(user);
+
 });
 
 router.post('/login', async(req,res)=>{
@@ -36,7 +38,6 @@ router.post('/login', async(req,res)=>{
 	} catch (error){
 		res.status(401).send(error.message);
 	}
-
 
 });
 
