@@ -31,19 +31,19 @@ Para la instalación de un entorno de desarrollo:
     - Editor de texto - Recomendado: Visual Studio Code
     - Node js -versión 14.15.3
     - En la consola ejecutar:
-    ```bash
+```bash
     npm install express-generator -g
-    ```
+```
 
-    ```bash
+```bash
         express -e --git <nombre_proyecto>
-    ```
+```
 
     
     - Chequear tener los siguientes paquetes. Primero ejecutar:
-    ```bash
+```bash
     npm install 
-    ```
+```
 
         - "bcryptjs": "^2.4.3", → para hashear contraseñas
 
@@ -75,8 +75,8 @@ Para la ejecución:
 
     - Para levantar el servidor:
 
-    ```bash
+```bash
     npm install
-    ```
+```
     
 	
