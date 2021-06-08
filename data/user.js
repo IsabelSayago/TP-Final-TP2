@@ -1,10 +1,8 @@
 require('dotenv').config();
-const mongodb = require("mongodb");
 const connection = require("./connection");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-var ObjectId = require("mongodb").ObjectId;
-const { all } = require('../app');
+const ObjectId = require("mongodb").ObjectId;
 
 async function getAllUsers() {
   const connectiondb = await connection.getConnection();
@@ -52,8 +50,7 @@ async function updateUser(myUser) {
 
 async function addUser(user) {
   const connectiondb = await connection.getConnection();
-  //primer parámetro lo que se encripta
-  //segunda parámetro (salt), número de iteraciones para hacer la encripción
+  
   user.password = bcrypt.hashSync(user.password, 8);
 
   const result = await connectiondb
@@ -66,7 +63,6 @@ async function addUser(user) {
 }
   
 async function generateJWT(user){
-// tercer parámetro es un key de la aplicación
 	const token = jwt.sign({_id: user._id, email:user.email}, process.env.SECRET_KEY, {expiresIn: '5min'})
 	return token;
 }
