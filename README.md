@@ -36,7 +36,7 @@ Para la instalación de un entorno de desarrollo:
 ```
 
 ```bash
-        express -e --git <nombre_proyecto>
+    express -e --git <nombre_proyecto>
 ```
 
     
@@ -45,27 +45,27 @@ Para la instalación de un entorno de desarrollo:
     npm install 
 ```
 
-        - "bcryptjs": "^2.4.3", → para hashear contraseñas
+- "bcryptjs": "^2.4.3", → para hashear contraseñas
 
-        - "cookie-parser": "~1.4.4", → para configurar cookies
+- "cookie-parser": "~1.4.4", → para configurar cookies
 
-        - "cors": "^2.8.5", → para habilitar CORS desde todos los origenes
+- "cors": "^2.8.5", → para habilitar CORS desde todos los origenes
 
-        - "debug": "~2.6.9", → para habilitar o desahabilitar mensajes en consola
+- "debug": "~2.6.9", → para habilitar o desahabilitar mensajes en consola
 
-        - "dotenv": "^10.0.0", → para crear variables de entorno en el proyecto local
+- "dotenv": "^10.0.0", → para crear variables de entorno en el proyecto local
 
-        - "ejs": "~2.6.1", → permite procesar páginas HTML cuya extensión sea .ejs
+- "ejs": "~2.6.1", → permite procesar páginas HTML cuya extensión sea .ejs
 
-        - "express": "~4.16.1", → para configurar el servidor/API
+- "express": "~4.16.1", → para configurar el servidor/API
 
-        - "http-errors": "~1.6.3", → crea errores HTTP para Express
+- "http-errors": "~1.6.3", → crea errores HTTP para Express
 
-        - "jsonwebtoken": "^8.5.1", → para generar el token del usuario
+- "jsonwebtoken": "^8.5.1", → para generar el token del usuario
 
-        - "mongodb": "^3.6.9", → para conectarnos a la base de datos MongoDB
+- "mongodb": "^3.6.9", → para conectarnos a la base de datos MongoDB
 
-        - "morgan": "~1.9.1" → Middleware del registrador de solicitudes HTTP para node.js
+- "morgan": "~1.9.1" → Middleware del registrador de solicitudes HTTP para node.js
 
 Para la ejecución:
 
@@ -76,7 +76,7 @@ Para la ejecución:
     - Para levantar el servidor:
 
 ```bash
-    npm install
+    npm start
 ```
     
 	
