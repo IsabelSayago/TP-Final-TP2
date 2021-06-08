@@ -50,7 +50,7 @@ El objetivo principal será conectar dos usuarios para chatear en tiempo real en
 
 - "cookie-parser": "~1.4.4", → para configurar cookies
 
-- "cors": "^2.8.5", → para habilitar CORS desde todos los origenes
+- "cors": "^2.8.5", → para habilitar CORS middleware
 
 - "debug": "~2.6.9", → para habilitar o desahabilitar mensajes en consola
 
