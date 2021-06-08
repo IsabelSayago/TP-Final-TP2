@@ -3,7 +3,7 @@ var router = express.Router();
 const data = require('../data/user');
 const auth = require('../middleware/auth');
 
-router.get('/', async (req,res)=>{
+router.get('/',auth, async (req,res)=>{
 
 	const result = await data.getAllUsers();
 	res.send(result);
@@ -15,7 +15,7 @@ router.get('/:id', async (req, res)=>{
     res.send(user);
 });
 
-router.put('/:id', async (req, res)=>{
+router.put('/:id',auth, async (req, res)=>{
     // TODO: Validacion
     let id = req.params.id;
     let user = req.body;
