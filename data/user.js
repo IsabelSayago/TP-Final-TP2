@@ -68,7 +68,7 @@ async function addUser(user) {
 }
   {/*-----------------JWT---------------*/}
 async function generateJWT(user){
-	const token = jwt.sign({_id: user._id, email:user.email}, process.env.SECRET_KEY, {expiresIn: '5min'})
+	const token = jwt.sign({_id: user._id, email:user.email}, process.env.SECRET_KEY, {expiresIn: '1h'})
 	return token;
 }
 
@@ -94,6 +94,17 @@ async function findByCredentials(email, password) {
 }
 
 
+async function findById(Id) {
+  const connectiondb = await connection.getConnection();
+  const user = await connectiondb
+    .db("TPFinal-TP2")
+    .collection("Usuarios")
+    .findOne({ _Id: Id });
+ 
+  return user;
+}
+
+
 module.exports = {
   addUser,
   findByCredentials,
@@ -101,5 +112,6 @@ module.exports = {
   getAllUsers,
   updateUser,
   getUser,
+  findById
 };
 

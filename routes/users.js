@@ -11,11 +11,22 @@ router.get('/',auth, async (req,res)=>{
 
 router.get('/:id', async (req, res)=>{
 
-    const user = await data.getUser(req.params.id);
+    const user = await data.findById(req.params.id);
     res.send(user);
 });
 
-router.put('/:id',auth, async (req, res)=>{
+router.post('/', async(req,res)=>{
+	try{
+		const user = await data.findById(req.body._id);
+		const token = await data.generateJWT(user);
+		res.send({user,token})
+	} catch (error){
+		res.status(401).send(error.message);
+	}
+
+});
+
+router.put('/:id', async (req, res)=>{
     // TODO: Validacion
     let id = req.params.id;
     let user = req.body;
