@@ -4,6 +4,8 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const ObjectId = require("mongodb").ObjectId;
 
+{/*-----------------GET ALL USER---------------*/}
+
 async function getAllUsers() {
   const connectiondb = await connection.getConnection();
   const users = await connectiondb
@@ -14,7 +16,7 @@ async function getAllUsers() {
   return users;
 }
 
-  
+  {/*-----------------GET USER---------------*/}
   async function getUser(id) {
   const connectiondb = await connection.getConnection();
 
@@ -27,6 +29,7 @@ async function getAllUsers() {
 }
 
 
+{/*-----------------UPDATE USER---------------*/}
 
 async function updateUser(myUser) {
   const connectiondb = await connection.getConnection();
@@ -48,6 +51,8 @@ async function updateUser(myUser) {
   return result;
 }
 
+{/*-----------------add user---------------*/}
+
 async function addUser(user) {
   const connectiondb = await connection.getConnection();
   
@@ -61,11 +66,13 @@ async function addUser(user) {
   return result;
   
 }
-  
+  {/*-----------------JWT---------------*/}
 async function generateJWT(user){
-	const token = jwt.sign({_id: user._id, email:user.email}, process.env.SECRET_KEY, {expiresIn: '5min'})
+	const token = jwt.sign({_id: user._id, email:user.email}, process.env.SECRET_KEY, {expiresIn: '1h'})
 	return token;
 }
+
+{/*-----------------FIND USER---------------*/}
 
 async function findByCredentials(email, password) {
   const connectiondb = await connection.getConnection();
@@ -87,6 +94,17 @@ async function findByCredentials(email, password) {
 }
 
 
+async function findById(Id) {
+  const connectiondb = await connection.getConnection();
+  const user = await connectiondb
+    .db("TPFinal-TP2")
+    .collection("Usuarios")
+    .findOne({ _Id: Id });
+ 
+  return user;
+}
+
+
 module.exports = {
   addUser,
   findByCredentials,
@@ -94,5 +112,6 @@ module.exports = {
   getAllUsers,
   updateUser,
   getUser,
+  findById
 };
 
