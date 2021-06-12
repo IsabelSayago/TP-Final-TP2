@@ -94,12 +94,12 @@ async function findByCredentials(email, password) {
 }
 
 
-async function findById(Id) {
+async function findById(id) {
   const connectiondb = await connection.getConnection();
   const user = await connectiondb
     .db("TPFinal-TP2")
     .collection("Usuarios")
-    .findOne({ _Id: Id });
+    .findOne({ _id: id });
  
   return user;
 }
