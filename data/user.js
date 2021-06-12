@@ -99,7 +99,7 @@ async function findById(id) {
   const user = await connectiondb
     .db("TPFinal-TP2")
     .collection("Usuarios")
-    .findOne({ _id: id });
+    .findOne({ _id: new ObjectId(id) });
  
   return user;
 }
