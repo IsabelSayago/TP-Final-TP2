@@ -3,9 +3,9 @@ var router = express.Router();
 const data = require('../data/user');
 const auth = require('../middleware/auth');
 
+
 // Ver si se saca
 /* router.get('/',auth, async (req,res)=>{
-
 	const result = await data.getAllUsers();
 	res.send(result);
 }); */
