@@ -4,13 +4,41 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
+var app = express();
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/login');
 var signupRouter = require('./routes/signup');
 
-var app = express();
+// Create the http server
+const server = require('http').createServer(app);
+  
+// Create the Socket IO server on 
+// top of http server
 
+const io = require("socket.io")(server)
+
+io.on('connection', (socket) => {
+  console.log(`User ${socket.id} is connected`);
+  socket.on('disconnect', () => {
+      console.log(`User ${socket.id} is disconnected`);
+  });
+  
+  
+  const { languageRoom } = socket.handshake.query;
+  socket.join(languageRoom);
+
+  socket.on('chat message', (data) => {
+      console.log(`${languageRoom} room`);
+      io.in(languageRoom).emit('chat message', data);
+      console.log(data)
+  });
+
+  socket.on('disconnect', () =>{
+      socket.leave(languageRoom);
+  })
+});
 
 
 // view engine setup
@@ -50,4 +78,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+
+
+module.exports = { app: app, server: server };

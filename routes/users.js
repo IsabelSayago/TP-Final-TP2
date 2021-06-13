@@ -3,11 +3,12 @@ var router = express.Router();
 const data = require('../data/user');
 const auth = require('../middleware/auth');
 
-router.get('/', async (req,res)=>{
 
+// Ver si se saca
+/* router.get('/',auth, async (req,res)=>{
 	const result = await data.getAllUsers();
 	res.send(result);
-});
+}); */
 
 router.get('/:id', async (req, res)=>{
 
