@@ -3,20 +3,19 @@ var router = express.Router();
 const data = require('../data/user');
 const auth = require('../middleware/auth');
 
-// Ver si se saca
-/* router.get('/',auth, async (req,res)=>{
+router.get('/',auth, async (req,res)=>{
 
 	const result = await data.getAllUsers();
 	res.send(result);
-}); */
+});
 
-router.get('/:id', async (req, res)=>{
+router.get('/:id',auth, async (req, res)=>{
 
     const user = await data.findById(req.params.id);
     res.send(user);
 });
 
-router.post('/', async(req,res)=>{
+router.post('/',auth, async(req,res)=>{
 	try{
 		const user = await data.findById(req.body._id);
 		const token = await data.generateJWT(user);
@@ -29,11 +28,9 @@ router.post('/', async(req,res)=>{
 
 router.put('/:id', async (req, res)=>{
     // TODO: Validacion
-    let id = req.params.id;
-    let user = req.body;
-    user._id = id;
-    user = await data.updateUser(req.body);
-    res.send(user);
+    let user = {...req.body, _id: req.params.id};
+    let userUpdated = await data.updateUser(user);
+    res.send(userUpdated);
 
 });
 

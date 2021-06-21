@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const ObjectId = require("mongodb").ObjectId;
 
-{/*-----------------GET ALL USER---------------*/}
+{/*-----------------GET ALL USERS---------------*/}
 
 async function getAllUsers() {
   const connectiondb = await connection.getConnection();
@@ -16,7 +16,7 @@ async function getAllUsers() {
   return users;
 }
 
-  {/*-----------------GET USER---------------*/}
+  {/*-----------------GET USER BY ID---------------*/}
   async function getUser(id) {
   const connectiondb = await connection.getConnection();
 
@@ -33,16 +33,17 @@ async function getAllUsers() {
 
 async function updateUser(myUser) {
   const connectiondb = await connection.getConnection();
-  const query = { _id: new ObjectId(myUser._id) };
+  const query = {_id: new ObjectId(myUser._id)};
   const newvalues = {
     $set: {
-      nombre: myUser.nombre,
-      idioma: myUser.idioma,
-      edad: myUser.edad,
-      mail: myUser.mail,
+      name: myUser.name,
+      language: myUser.language,
+      age: myUser.age,
     },
   };
+  console.log(myUser.age)
 
+  console.log(query)
   const result = await connectiondb
     .db("TPFinal-TP2")
     .collection("Usuarios")
@@ -51,7 +52,7 @@ async function updateUser(myUser) {
   return result;
 }
 
-{/*-----------------add user---------------*/}
+{/*-----------------ADD USER---------------*/}
 
 async function addUser(user) {
   const connectiondb = await connection.getConnection();
@@ -63,10 +64,12 @@ async function addUser(user) {
     .collection("Usuarios")
     .insertOne(user);
 
-  return result;
+  return result.ops[0];
   
 }
-  {/*-----------------JWT---------------*/}
+
+{/*--------------------JWT--------------------*/}
+
 async function generateJWT(user){
 	const token = jwt.sign({_id: user._id, email:user.email}, process.env.SECRET_KEY, {expiresIn: '1h'})
 	return token;
