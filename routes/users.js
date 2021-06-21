@@ -3,18 +3,18 @@ var router = express.Router();
 const data = require('../data/user');
 const auth = require('../middleware/auth');
 
-router.get('/',auth, async (req,res)=>{
+router.get('/', async (req,res)=>{
 	const result = await data.getAllUsers();
 	res.send(result);
 });
 
-router.get('/:id',auth, async (req, res)=>{
+router.get('/:id', async (req, res)=>{
 
     const user = await data.findById(req.params.id);
     res.send(user);
 });
 
-router.post('/',auth, async(req,res)=>{
+router.post('/', async(req,res)=>{
 	try{
 		const user = await data.findById(req.body._id);
 		const token = await data.generateJWT(user);

@@ -41,9 +41,7 @@ async function updateUser(myUser) {
       age: myUser.age,
     },
   };
-  console.log(myUser.age)
 
-  console.log(query)
   const result = await connectiondb
     .db("TPFinal-TP2")
     .collection("Usuarios")
