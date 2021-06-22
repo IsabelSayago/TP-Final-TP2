@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const ObjectId = require("mongodb").ObjectId;
 
-{/*-----------------GET ALL USERS---------------*/}
+{/*-----------------GET ALL USERS---------------*/ }
 
 async function getAllUsers() {
   const connectiondb = await connection.getConnection();
@@ -16,8 +16,8 @@ async function getAllUsers() {
   return users;
 }
 
-  {/*-----------------GET USER BY ID---------------*/}
-  async function getUser(id) {
+{/*-----------------GET USER BY ID---------------*/ }
+async function getUser(id) {
   const connectiondb = await connection.getConnection();
 
   const user = await connectiondb
@@ -29,11 +29,11 @@ async function getAllUsers() {
 }
 
 
-{/*-----------------UPDATE USER---------------*/}
+{/*-----------------UPDATE USER---------------*/ }
 
 async function updateUser(myUser) {
   const connectiondb = await connection.getConnection();
-  const query = {_id: new ObjectId(myUser._id)};
+  const query = { _id: new ObjectId(myUser._id) };
   const newvalues = {
     $set: {
       name: myUser.name,
@@ -50,30 +50,38 @@ async function updateUser(myUser) {
   return result;
 }
 
-{/*-----------------ADD USER---------------*/}
+{/*-----------------ADD USER---------------*/ }
 
 async function addUser(user) {
   const connectiondb = await connection.getConnection();
-  
   user.password = bcrypt.hashSync(user.password, 8);
 
-  const result = await connectiondb
+  const userExists = await connectiondb
     .db("TPFinal-TP2")
     .collection("Usuarios")
-    .insertOne(user);
+    .findOne({ email: user.email });
+  if (!userExists) {
+    const result = await connectiondb
+      .db("TPFinal-TP2")
+      .collection("Usuarios")
+      .insertOne(user);
 
-  return result.ops[0];
-  
+    return result.ops[0];
+  } else {
+    throw new Error("This e-mail is being used.");
+
+  }
+
 }
 
-{/*--------------------JWT--------------------*/}
+{/*--------------------JWT--------------------*/ }
 
-async function generateJWT(user){
-	const token = jwt.sign({_id: user._id, email:user.email}, process.env.SECRET_KEY, {expiresIn: '1h'})
-	return token;
+async function generateJWT(user) {
+  const token = jwt.sign({ _id: user._id, email: user.email }, process.env.SECRET_KEY, { expiresIn: '1h' })
+  return token;
 }
 
-{/*-----------------FIND USER---------------*/}
+{/*-----------------FIND USER---------------*/ }
 
 async function findByCredentials(email, password) {
   const connectiondb = await connection.getConnection();
@@ -101,7 +109,7 @@ async function findById(id) {
     .db("TPFinal-TP2")
     .collection("Usuarios")
     .findOne({ _id: new ObjectId(id) });
- 
+
   return user;
 }
 

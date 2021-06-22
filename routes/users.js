@@ -25,7 +25,7 @@ router.post('/', async(req,res)=>{
 
 });
 
-router.put('/:id',auth, async (req, res)=>{
+router.put('/:id', async (req, res)=>{
     // TODO: Validacion
     let user = {...req.body, _id: req.params.id};
     let userUpdated = await data.updateUser(user);
