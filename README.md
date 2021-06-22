@@ -13,7 +13,6 @@ El objetivo principal será conectar dos usuarios para chatear en tiempo real en
     - Operaciones CRUD usuario  
     - Autorización usuario
     - Interaccion con base de datos Mongo
-    - Listar amigos 
     - Persistencia del usuario a través de la API de Google
 
 
@@ -21,63 +20,36 @@ El objetivo principal será conectar dos usuarios para chatear en tiempo real en
 	- Usuario
 
 ## *Listado de las entidades principales*
-    - Usuarios
-    - Idiomas
-    - Amigos
+   	- Usuarios
+    	- Idiomas
+   	 - Amigos
     
 ## *Instrucciones técnicas:*
-**Para la instalación de un entorno de desarrollo:**
+1. Pedir el archivo .env o preguntar las variables de entorno.
+2. Editor de texto - Recomendado: Visual Studio Code
+3. Node js -versión 14.15.3
+4. En la consola ejecutar:
 
-1. Editor de texto - Recomendado: Visual Studio Code
-2. Node js -versión 14.15.3
-3. En la consola ejecutar:
-```bash
-    npm install express-generator -g
 ```
-
-```bash
-    express -e --git <nombre_proyecto>
-```
-
-    
-4. Chequear tener los siguientes paquetes. Primero ejecutar:
-
-```bash
     npm install 
 ```
-
-- "bcryptjs": "^2.4.3", → para hashear contraseñas
-
-- "cookie-parser": "~1.4.4", → para configurar cookies
-
-- "cors": "^2.8.5", → para habilitar CORS middleware
-
-- "debug": "~2.6.9", → para habilitar o desahabilitar mensajes en consola
-
-- "dotenv": "^10.0.0", → para crear variables de entorno en el proyecto local
-
-- "ejs": "~2.6.1", → permite procesar páginas HTML cuya extensión sea .ejs
-
-- "express": "~4.16.1", → para configurar el servidor/API
-
-- "http-errors": "~1.6.3", → crea errores HTTP para Express
-
-- "jsonwebtoken": "^8.5.1", → para generar el token del usuario
-
-- "mongodb": "^3.6.9", → para conectarnos a la base de datos MongoDB
-
-- "morgan": "~1.9.1" → Middleware del registrador de solicitudes HTTP para node.js
-
-**Para la ejecución:**
-
-1. Configurar Cluster en MongoDB ->
-
-> Conectarse a él usando la opción 2 (MongoDB's native drivers) versión 2.2.12 or later
-
-2. Para levantar el servidor:
 
 ```bash
     npm start
 ```
-    
+## *Listado de Endpoints*
+
+RutaAPI: https://apichathello.herokuapp.com/
+
+1. GET
+- RutaAPI/ -> Página principal
+- RutaAPI/users/ -> Devuelve todos los usuarios
+- RutaAPI/users/:id -> Devuelve un usuario por id
+
+2. POST
+- RutaAPI/login -> Login de usuarios
+- RutaAPI/signup -> Registro de usuarios
+
+3. PUT
+- RutaAPI/users/:id -> Actualiza los datos de un usuario por id
 	
