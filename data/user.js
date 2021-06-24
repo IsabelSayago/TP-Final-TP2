@@ -53,23 +53,28 @@ async function updateUser(myUser) {
 {/*-----------------ADD USER---------------*/ }
 
 async function addUser(user) {
+
   const connectiondb = await connection.getConnection();
-  user.password = bcrypt.hashSync(user.password, 8);
+
+  if (!user.photoUrl) {
+    user.password = bcrypt.hashSync(user.password, 8);
+  }
 
   const userExists = await connectiondb
     .db("TPFinal-TP2")
     .collection("Usuarios")
     .findOne({ email: user.email });
+    
   if (!userExists) {
     const result = await connectiondb
       .db("TPFinal-TP2")
       .collection("Usuarios")
-      .insertOne(user);
-
+      .insertOne({ ...user, id: new ObjectId() });
     return result.ops[0];
-  } else {
-    throw new Error("This e-mail is being used.");
 
+  } else if (userExists && !user.photoUrl)  {
+
+    throw new Error("This e-mail is being used.");
   }
 
 }

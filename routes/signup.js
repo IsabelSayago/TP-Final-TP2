@@ -6,8 +6,12 @@ const auth = require('../middleware/auth');
 router.post('/', async (req, res) => {
 	try {
 		const user = await data.addUser(req.body);
-		const token = await data.generateJWT(user);
-		res.send({user, token});
+		if (!user.photoUrl) {
+			const token = await data.generateJWT(user);
+			res.send({ user, token });
+		} else {
+			res.send(user)
+		}
 	} catch (error) {
 		res.status(403).send(error.message);
 	}
