@@ -11,7 +11,6 @@ El objetivo principal será conectar dos usuarios para chatear en tiempo real en
     - Login y sign up de usuarios
     - Autenticación usuario
     - Operaciones CRUD usuario  
-    - Autorización usuario
     - Interaccion con base de datos Mongo
     - Persistencia del usuario a través de la API de Google
 
